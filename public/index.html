@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>cqupt-69-birthday</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but cqupt-69-birthday doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>获取69周年专属头像</title>
+  <script>
+    // function searchTokenFromUrl(tokenName) {
+    //   var paramsStr = location.href.split('?')[1]
+    //   var params
+    //   var tokenObject = {
+    //     token: null,
+    //     tokenIndex: -1
+    //   }
+    //   if (paramsStr) {
+    //     params = paramsStr.split('&')
+    //     var token = ""
+    //     var tokenIndex = -1
+    //     for (var i = 0, length = params.length; i < length; i++) {
+    //       var param = params[i]
+    //       if (param.indexOf(tokenName) > -1) {
+    //         tokenObject.token = param.replace('token=', '')
+    //         tokenObject.tokenIndex = i
+    //         break
+    //       }
+    //     }
+    //   }
+    //   return tokenObject
+    // }
+    // function searchTokenFromStorage(itemName) {
+    //   return localStorage.getItem(itemName)
+    // }
+    // function searchToken(tokenName, itemName) {
+    //   var resultState = {
+    //     state: '',
+    //     newHref: ''
+    //   }
+    //   var tokenObject = searchTokenFromUrl(tokenName)
+    //   if (tokenObject.tokenIndex > -1) {
+    //     //在url中拿到token
+    //     localStorage.setItem(itemName, tokenObject.token)
+    //     var href = location.href
+    //     var entrance = href.split('?')[0]
+    //     var params = location.href.split('?')[1].split('&')
+    //     //重定向至无token的url
+    //     params.splice(tokenObject.tokenIndex, 1)
+    //     if (params.length <= 0) {
+    //       resultState.newHref = entrance
+    //     } else {
+    //       resultState.newHref = entrance + '?' + params.join('&')
+    //     }
+    //     resultState.state = 'TOKENINURL'
+    //   } else {
+    //     var token = searchTokenFromStorage(itemName)
+    //     if (!token) {
+    //       //url和storage中均无token
+    //       var redirectUrl = "https://wx.redrock.team/game/69birthday/"
+    //       resultState.state = 'LACKTOKEN'
+    //       resultState.newHref = 'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(redirectUrl) + '&scope=tmpbase'
+    //     } else {
+    //       //token在storage中
+    //       resultState.state = 'TOKENINSTORAGE'
+    //       resultState.newHref = null
+    //     }
+    //   }
+    //   return resultState;
+    // }
+    // var resultState = searchToken('token', 'token_69_birthday')
+    // switch (resultState.state) {
+    //   case 'TOKENINSTORAGE':
+    //     break;
+    //   default:
+    //     location.href = resultState.newHref
+    // }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but cqupt-69-birthday doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

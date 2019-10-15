@@ -1,4 +1,4 @@
-# cqupt-69-birthday
+# 重邮69周年生成专属头像
 
 ## Project setup
 ```
