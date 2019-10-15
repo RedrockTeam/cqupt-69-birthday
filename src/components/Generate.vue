@@ -84,7 +84,6 @@ export default {
         width: 271,
         height: 271
       });
-      console.log(canvas);
       const resultImg = canvas.toDataURL();
       this.isGenerating = false;
       this.$emit("generate-headimg", {
