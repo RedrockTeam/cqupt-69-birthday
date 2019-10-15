@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <title>获取69周年专属头像</title>
+  <title>获取重邮69周年专属头像</title>
   <script>
     function searchTokenFromUrl(tokenName) {
       var paramsStr = location.href.split('?')[1]
@@ -103,12 +102,13 @@
       .then(res => res.json())
       .then(data => {
         var id = data.id
-        document.title = "你是第" + id + "个送上祝福的人"
+        var words = "你是第" + id + "个为重邮69岁生日送上祝福的人"
+        document.title = words
         var option = {
-          title: "你是第" + id + "个送上祝福的人",
+          title: words,
           link: "https://wx.redrock.team/game/69birthday/",
-          imgUrl: 'https://hongyan.cqupt.edu.cn/share/69birthday.png',
-          desc: '重庆邮电大学69周年',
+          imgUrl: 'https://hongyan.cqupt.edu.cn/share/69birthday.jpg',
+          desc: '重庆邮电大学69周年校庆',
           type: '',
           success: function () {
             console.log('分享成功');
