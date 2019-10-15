@@ -83,9 +83,7 @@ export default {
     line-height: 14.27vw;
     color: white;
     font-size: 4.8vw;
-    margin-top: 52vw;
-    // position: absolute;
-    // bottom: 33.07vw;
+    margin-top: 40vw;
   }
 }
 </style>
