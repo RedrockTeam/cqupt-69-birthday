@@ -9,6 +9,7 @@
       ></entrance>
       <generate
         @generate-headimg="generateImg"
+        @changeSelected="selected = $event"
         :year="year"
         :badge="badge"
         :headimg="headimg"

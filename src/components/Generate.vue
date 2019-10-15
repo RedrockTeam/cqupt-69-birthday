@@ -7,7 +7,7 @@
       <div
         class="headimg-69"
         :style="{backgroundColor: selected === 1 ? '#ffffff' : '#fff9dc'}"
-        @click="selected = 1"
+        @click="select69"
       >
         <img src="../assets/69-example.png" alt />
         <p>69周年</p>
@@ -15,7 +15,7 @@
       <div
         class="headimg-badge"
         :style="{backgroundColor: selected === 2 ? '#ffffff' : '#fff9dc'}"
-        @click="selected = 2"
+        @click="selectBadge"
       >
         <img src="../assets/badge-example.png" alt />
         <p>校徽纪念</p>
@@ -65,6 +65,14 @@ export default {
     }
   },
   methods: {
+    select69() {
+      this.selected = 1;
+      this.$emit("changeSelected", 1)
+    },
+    selectBadge() {
+      this.selected = 2;
+      this.$emit("changeSelected", 2)
+    },
     async generateImg() {
       if (this.isGenerating) {
         return;

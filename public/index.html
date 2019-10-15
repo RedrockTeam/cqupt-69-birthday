@@ -8,73 +8,73 @@
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title>获取69周年专属头像</title>
   <script>
-    // function searchTokenFromUrl(tokenName) {
-    //   var paramsStr = location.href.split('?')[1]
-    //   var params
-    //   var tokenObject = {
-    //     token: null,
-    //     tokenIndex: -1
-    //   }
-    //   if (paramsStr) {
-    //     params = paramsStr.split('&')
-    //     var token = ""
-    //     var tokenIndex = -1
-    //     for (var i = 0, length = params.length; i < length; i++) {
-    //       var param = params[i]
-    //       if (param.indexOf(tokenName) > -1) {
-    //         tokenObject.token = param.replace('token=', '')
-    //         tokenObject.tokenIndex = i
-    //         break
-    //       }
-    //     }
-    //   }
-    //   return tokenObject
-    // }
-    // function searchTokenFromStorage(itemName) {
-    //   return localStorage.getItem(itemName)
-    // }
-    // function searchToken(tokenName, itemName) {
-    //   var resultState = {
-    //     state: '',
-    //     newHref: ''
-    //   }
-    //   var tokenObject = searchTokenFromUrl(tokenName)
-    //   if (tokenObject.tokenIndex > -1) {
-    //     //在url中拿到token
-    //     localStorage.setItem(itemName, tokenObject.token)
-    //     var href = location.href
-    //     var entrance = href.split('?')[0]
-    //     var params = location.href.split('?')[1].split('&')
-    //     //重定向至无token的url
-    //     params.splice(tokenObject.tokenIndex, 1)
-    //     if (params.length <= 0) {
-    //       resultState.newHref = entrance
-    //     } else {
-    //       resultState.newHref = entrance + '?' + params.join('&')
-    //     }
-    //     resultState.state = 'TOKENINURL'
-    //   } else {
-    //     var token = searchTokenFromStorage(itemName)
-    //     if (!token) {
-    //       //url和storage中均无token
-    //       var redirectUrl = "https://wx.redrock.team/game/69birthday/"
-    //       resultState.state = 'LACKTOKEN'
-    //       resultState.newHref = 'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(redirectUrl) + '&scope=tmpbase'
-    //     } else {
-    //       //token在storage中
-    //       resultState.state = 'TOKENINSTORAGE'
-    //       resultState.newHref = null
-    //     }
-    //   }
-    //   return resultState;
-    // }
-    // var resultState = searchToken('token', 'token_69_birthday')
-    // switch (resultState.state) {
-    //   case 'TOKENINSTORAGE':
-    //     break;
-    //   default:
-    //     location.href = resultState.newHref
-    // }
+    function searchTokenFromUrl(tokenName) {
+      var paramsStr = location.href.split('?')[1]
+      var params
+      var tokenObject = {
+        token: null,
+        tokenIndex: -1
+      }
+      if (paramsStr) {
+        params = paramsStr.split('&')
+        var token = ""
+        var tokenIndex = -1
+        for (var i = 0, length = params.length; i < length; i++) {
+          var param = params[i]
+          if (param.indexOf(tokenName) > -1) {
+            tokenObject.token = param.replace('token=', '')
+            tokenObject.tokenIndex = i
+            break
+          }
+        }
+      }
+      return tokenObject
+    }
+    function searchTokenFromStorage(itemName) {
+      return localStorage.getItem(itemName)
+    }
+    function searchToken(tokenName, itemName) {
+      var resultState = {
+        state: '',
+        newHref: ''
+      }
+      var tokenObject = searchTokenFromUrl(tokenName)
+      if (tokenObject.tokenIndex > -1) {
+        //在url中拿到token
+        localStorage.setItem(itemName, tokenObject.token)
+        var href = location.href
+        var entrance = href.split('?')[0]
+        var params = location.href.split('?')[1].split('&')
+        //重定向至无token的url
+        params.splice(tokenObject.tokenIndex, 1)
+        if (params.length <= 0) {
+          resultState.newHref = entrance
+        } else {
+          resultState.newHref = entrance + '?' + params.join('&')
+        }
+        resultState.state = 'TOKENINURL'
+      } else {
+        var token = searchTokenFromStorage(itemName)
+        if (!token) {
+          //url和storage中均无token
+          var redirectUrl = "https://wx.redrock.team/game/69birthday/"
+          resultState.state = 'LACKTOKEN'
+          resultState.newHref = 'https://wx.redrock.team/magicloop/rushb?b=' + encodeURI(redirectUrl) + '&scope=tmpbase'
+        } else {
+          //token在storage中
+          resultState.state = 'TOKENINSTORAGE'
+          resultState.newHref = null
+        }
+      }
+      return resultState;
+    }
+    var resultState = searchToken('token', 'token_69_birthday')
+    switch (resultState.state) {
+      case 'TOKENINSTORAGE':
+        break;
+      default:
+        location.href = resultState.newHref
+    }
   </script>
 </head>
 
@@ -86,5 +86,44 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://wx.redrock.team/wx-api/share.js"></script>
+<script>
+  WXSHARE.config({ debug: false });
+  WXSHARE.ready(function () {
+    var payload = localStorage.getItem('token_69_birthday').split('.')[0]
+    var options = {
+      method: 'POST',
+      body: JSON.stringify({ payload: payload }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }
+    fetch('https://nalgd.top/69birthday/count', options)
+      .then(res => res.json())
+      .then(data => {
+        var id = data.id
+        document.title = "你是第" + id + "个送上祝福的人"
+        var option = {
+          title: "你是第" + id + "个送上祝福的人",
+          link: "https://wx.redrock.team/game/69birthday/",
+          imgUrl: 'https://hongyan.cqupt.edu.cn/share/69birthday.png',
+          desc: '重庆邮电大学69周年',
+          type: '',
+          success: function () {
+            console.log('分享成功');
+          },
+          cancel: function () {
+            console.log('取消分享');
+          },
+        };
+        wx.onMenuShareTimeline(option);
+        wx.onMenuShareAppMessage(option);
+        wx.onMenuShareQQ(option);
+        wx.onMenuShareWeibo(option);
+        wx.onMenuShareQZone(option);
+      })
+  });
+</script>
 
 </html>
