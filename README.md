@@ -1,29 +1,39 @@
 # 重邮69周年生成专属头像
 
-## Project setup
+### 项目说明
+
+庆祝重庆邮电大学69周年活动，微信公众号网页，基于vue-cli3快速开发
+
+### 目录结构
+
 ```
-yarn install
+|-- .gitignore
+|-- babel.config.js
+|-- package.json
+|-- README.md
+|-- vue.config.js
+|-- yarn.lock
+|-- public
+|   |-- index.html
+|-- src
+    |-- App.vue  //无router，调整translate显示不同页
+    |-- main.js
+    |-- assets
+    |-- components
+        |-- Entrance.vue  //入口页
+        |-- Generate.vue  //生成页
+        |-- Save.vue  //保存页
+
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+### 技术
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+- vue
+- html2canvas
 
-### Run your tests
-```
-yarn run test
-```
+### 坑
 
-### Lints and fixes files
-```
-yarn run lint
-```
+##### html2canvas
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 要截取部分含微信用户头像图导致canvas污染无法导出。解决办法：借助nginx反代改变图片域名
+- 按节点生成canvas时在iOS上无效，全屏生成可用。解决办法：截取全屏并给定切割位置
